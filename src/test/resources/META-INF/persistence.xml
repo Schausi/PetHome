@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+    <persistence-unit name="myTestPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>at.htl.pethome.entities.Pet</class>
+        <class>at.htl.pethome.entities.Person</class>
+        <class>at.htl.pethome.entities.Owner</class>
+        <class>at.htl.pethome.entities.Staff</class>
+        <class>at.htl.pethome.entities.Storage</class>
+        <class>at.htl.pethome.entities.Disease</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action"
+                      value="drop-create"/>
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/db"/>
+            <property name="javax.persistence.jdbc.user" value="app"/>
+            <property name="javax.persistence.jdbc.password" value="app"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
+

@@ -1,0 +1,12 @@
+version: '3'
+services:
+  myappserver:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - myappderby
+  myappderby:
+    build: ./db/.
+    ports:
+      - 1527:1527
