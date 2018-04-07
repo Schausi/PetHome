@@ -9,16 +9,38 @@
     <title>PetHome</title>
 </h:head>
 <h:body>
-    <p:dataTable id="pet_table" var="pet" value="#{indexController.pets}">
-        <p:column headerText="Name">
-            <h:outputText value="#{pet.name}"/>
-        </p:column>
-        <p:column headerText="Typ">
-            <h:outputText value="#{pet.type}"/>
-        </p:column>
-        <p:column headerText="Age">
-            <h:outputText value="#{pet.age}"/>
-        </p:column>
-    </p:dataTable>
+    <h:form id="event_form">
+        <p:growl id="msgs" showDetail="true" />
+        <p:panel header="Tiere">
+            <p:dataTable id="event_table" var="pet" value="#{indexController.pets}" selectionMode="single" selection="#{indexController.currPet}" rowKey="#{pet.id}">
+                <p:ajax event="rowSelect" listener="#{indexController.onRowSelect}" update=":event_form:msgs :event_form:pet_table" />
+                <p:column headerText="Name">
+                    <h:outputText value="#{pet.name}"></h:outputText>
+                </p:column>
+                <p:column headerText="Tierart">
+                    <h:outputText value="#{pet.type}"></h:outputText>
+                </p:column>
+                <p:column headerText="Alter in Jahren">
+                    <h:outputText value="#{pet.age}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+        <p:panel header="Informationen">
+            <p:dataTable id="pet_table" var="if" value="#{indexController.currPet}">
+                <p:column headerText="Lagerart">
+                    <h:outputText value="#{if.storage.description}"></h:outputText>
+                </p:column>
+                <p:column headerText="1. Kranheit">
+                    <h:outputText value="#{if.diseases[0].name}"></h:outputText>
+                </p:column>
+                <p:column headerText="Registrierungsdatum">
+                    <h:outputText value="#{if.registrationDate}"></h:outputText>
+                </p:column>
+                <p:column headerText="Owner">
+                    <h:outputText value="#{indexController.getOwner()}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </h:form>
 </h:body>
 </html>

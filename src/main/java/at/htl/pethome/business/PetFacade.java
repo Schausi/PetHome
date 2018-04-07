@@ -24,7 +24,12 @@ public class PetFacade {
     }
 
     public List<Pet> findAll(){
-        return entityManager.createNamedQuery("Pet.findall",Pet.class).getResultList();
+        List<Pet> p= entityManager.createNamedQuery("Pet.findall",Pet.class).getResultList();
+        for (Pet e:p
+             ) {
+            System.out.println(e.getPersons().size()+" , "+e.getStorage()+" , "+e.getDiseases().size()+" , "+e.getRegistrationDate());
+        }
+        return p;
     }
 
 }
